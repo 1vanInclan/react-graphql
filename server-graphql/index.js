@@ -3,28 +3,8 @@ import {v1 as uuid} from 'uuid';
 import axios from "axios"; 
 
 
-const persons = [
-    {
-        name: "Ivan",
-        phone: "123",
-        street: "Calle Frontend",
-        city: "Barcelona",
-        id: "51531351ddededed1531dede"
-    },
-    {
-        name: "Youseff",
-        phone: "5544458913",
-        street: "Avenida fullstack",
-        city: "Mataro",
-        id: "5153dedededeede"
-    },
-    {
-        name: "Xochitl",
-        street: "Calle Frontend",
-        city: "Ibiza",
-        id: "515313-51-ddede-ded1531dede"
-    },
-]
+const persons = [{"name":"Aletuda","phone":"123","street":"Calle Frontend","city":"Barcelona","id":"51531351ddededed1531dede"},{"name":"black","phone":"5544458913","street":"Avenida fullstack","city":"Mataro","id":"5153dedededeede"},{"name":"Xochitl","street":"Calle Frontend","city":"Ibiza","id":"515313-51-ddede-ded1531dede"}]
+
 
 // Definir elementos
 const typeDefinitions = gql`
@@ -70,15 +50,13 @@ const resolvers = {
     Query: {
         personCount: () => persons.length,
         allPersons: async (root, args) => {
-            // Desde una api rest
-            const {data: personsFromRestApi} = await axios.get('http://localhost:3000/persons')
 
-            if(!args.phone) return personsFromRestApi
+            if(!args.phone) return persons;
 
             const byPhone = person =>
                 args.phone == "YES" ? person.phone : !person.phone 
 
-            return personsFromRestApi.filter(byPhone)
+            return persons.filter(byPhone)
 
 
         },

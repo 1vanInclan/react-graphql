@@ -4,7 +4,7 @@ import App from './App'
 import './index.css'
 import {ApolloClient, HttpLink, gql, InMemoryCache, ApolloProvider} from '@apollo/client';
 
-// Uso de apollo client
+// Uso de apollo client para conectar 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
